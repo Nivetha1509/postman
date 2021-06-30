@@ -12,7 +12,7 @@
 			"enabled": true
 		},
 		{
-			"key": "asserts",
+			"key": "assert",
 			"value": "var assert = (function () {\n    var _ = require('lodash');\n\n    return {\n        statusCode: function (expectedCode) {\n            pm.test(\"Status code is expectedCode\", function () {\n                pm.response.to.have.status(expectedCode);\n            });\n        },\n\n        jsonSchema: function (schema) {\n            pm.test(\"Validate Json Schema\", function () {\n                pm.response.to.have.jsonSchema(schema);\n            })\n        },\n\n        areEqual: function (assertiveName, expectedValue, foundValue) {\n            pm.test(assertiveName, function () {\n                pm.expect(foundValue).to.eql(expectedValue);\n            })\n        },\n\n        failTest: function (exception) {\n            pm.test(\"Test Fail: \", function () { throw new Error(exception.message) });\n        },\n\n        existInSubset: function (assertiveName, expectedValue, foundValue) {\n            pm.test(assertiveName, function () {\n                pm.expect(_.filter(expectedValue, foundValue)).to.not.be.empty\n            })\n        },\n\n        isArray: function (assertiveName, expectedValue) {\n            pm.test(assertiveName, () =>\n                pm.expect(expectedValue).to.be.an('array').but.not.an('object'))\n        },\n\n        isObject: function (assertiveName, expectedValue) {\n            pm.test(assertiveName, () =>\n                pm.expect(expectedValue).to.be.an('object').but.not.an('array'))\n        },\n\n        exists: function (assertiveName, object, field) {\n            pm.test(assertiveName, function () {\n                pm.expect(object).to.have.property(field);\n            });\n        }\n    }\n})();\n\n",
 			"enabled": true
 		},
@@ -24,6 +24,6 @@
 	],
 	"name": "My Workspace Globals",
 	"_postman_variable_scope": "globals",
-	"_postman_exported_at": "2021-06-30T02:12:29.626Z",
+	"_postman_exported_at": "2021-06-30T02:33:57.245Z",
 	"_postman_exported_using": "Postman/8.7.0"
 }

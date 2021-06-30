@@ -6,96 +6,947 @@
 	},
 	"item": [
 		{
-			"name": "User Registration",
+			"name": "Pre-execution",
+			"item": []
+		},
+		{
+			"name": "Tests",
 			"item": [
 				{
-					"name": "Send registration with empty body",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{bearer_token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\"name\": \"Fake Tester\",\r\n\"email\": \"faketester@automation.com\",\r\n\"password\": \"12345678\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{apiUrl}}/auth/register:",
-							"host": [
-								"{{apiUrl}}"
-							],
-							"path": [
-								"auth",
-								"register:"
-							],
-							"query": [
+					"name": "User Registration",
+					"item": [
+						{
+							"name": "Send registration with empty body",
+							"event": [
 								{
-									"key": "",
-									"value": null,
-									"disabled": true
+									"listen": "test",
+									"script": {
+										"exec": [
+											"eval(postman.getGlobalVariable(\"toolbox\"));\r",
+											"assert.statusCode(400)"
+										],
+										"type": "text/javascript"
+									}
 								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "User Login",
-			"item": [
-				{
-					"name": "New Request",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": null
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Projects",
-			"item": [
-				{
-					"name": "Get all projects",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{bearer_token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{apiUrl}}/projects:",
-							"host": [
-								"{{apiUrl}}"
 							],
-							"path": [
-								"projects:"
-							]
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"name\": \"Fake Tester\",\r\n\"email\": \"faketester@automation.com\",\r\n\"password\": \"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiUrl}}/auth/register",
+									"host": [
+										"{{apiUrl}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Send registration with null name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"eval(postman.getGlobalVariable(\"toolbox\"));\r",
+											"assert.statusCode(400)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"name\": null,\r\n\"email\": \"faketester@automation.com\",\r\n\"password\": \"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiUrl}}/auth/register",
+									"host": [
+										"{{apiUrl}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Send registration with null email",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"eval(postman.getGlobalVariable(\"toolbox\"));\r",
+											"assert.statusCode(400)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"name\": \"Fake Tester\",\r\n\"email\": null,\r\n\"password\": \"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiUrl}}/auth/register",
+									"host": [
+										"{{apiUrl}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Send registration with null password",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"eval(postman.getGlobalVariable(\"toolbox\"));\r",
+											"assert.statusCode(400)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"name\": \"Fake Tester\",\r\n\"email\": \"faketester@automation.com\",\r\n\"password\": null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiUrl}}/auth/register",
+									"host": [
+										"{{apiUrl}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Send registration with invalid email format",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"eval(postman.getGlobalVariable(\"toolbox\"));\r",
+											"assert.statusCode(400)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"name\": \"Fake Tester\",\r\n\"email\": \"faketesterautomation.com\",\r\n\"password\": \"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiUrl}}/auth/register",
+									"host": [
+										"{{apiUrl}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Send a valid new user registration",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"eval(postman.getGlobalVariable(\"toolbox\"));\r",
+											"assert.statusCode(201)\r",
+											"\r",
+											"try {\r",
+											"    test.setEnvVar('NEW_USER_TOKEN', JSON.parse(responseBody).object.token)\r",
+											"    test.setEnvVar('USER_ID', JSON.parse(responseBody).object.user._id)\r",
+											"    test.setEnvVar('USER_NAME', JSON.parse(responseBody).object.user.name)\r",
+											"} catch (e) {\r",
+											"    assert.failTest(e)\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"name\": \"Fake Tester\",\r\n\"email\": \"faketester@automation.com\",\r\n\"password\": \"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiUrl}}/auth/register",
+									"host": [
+										"{{apiUrl}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
+				},
+				{
+					"name": "User Login",
+					"item": [
+						{
+							"name": "User login with empty password",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"eval(postman.getGlobalVariable(\"toolbox\"));\r",
+											"assert.statusCode(400)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{NEW_USER_TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"\",\r\n    \"password\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiUrl}}/auth/authenticate",
+									"host": [
+										"{{apiUrl}}"
+									],
+									"path": [
+										"auth",
+										"authenticate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User login with empty email",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"eval(postman.getGlobalVariable(\"toolbox\"));\r",
+											"assert.statusCode(400)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{NEW_USER_TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"\",\r\n    \"password\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiUrl}}/auth/authenticate",
+									"host": [
+										"{{apiUrl}}"
+									],
+									"path": [
+										"auth",
+										"authenticate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User login with null password",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"eval(postman.getGlobalVariable(\"toolbox\"));\r",
+											"assert.statusCode(400)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{NEW_USER_TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"\",\r\n    \"password\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiUrl}}/auth/authenticate",
+									"host": [
+										"{{apiUrl}}"
+									],
+									"path": [
+										"auth",
+										"authenticate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User login with null email",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"eval(postman.getGlobalVariable(\"toolbox\"));\r",
+											"assert.statusCode(400)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{NEW_USER_TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"\",\r\n    \"password\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiUrl}}/auth/authenticate",
+									"host": [
+										"{{apiUrl}}"
+									],
+									"path": [
+										"auth",
+										"authenticate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User login with success",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"eval(postman.getGlobalVariable(\"toolbox\"));\r",
+											"assert.statusCode(201)\r",
+											"\r",
+											"try {\r",
+											"    test.setEnvVar('BEARER_TOKEN', JSON.parse(responseBody).object.token)\r",
+											"} catch (e) {\r",
+											"    assert.failTest(e)\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{LOGIN_TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"faketester@automation.com\",\r\n    \"password\": \"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiUrl}}/auth/authenticate",
+									"host": [
+										"{{apiUrl}}"
+									],
+									"path": [
+										"auth",
+										"authenticate"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Projects",
+					"item": [
+						{
+							"name": "Create a new project",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"eval(postman.getGlobalVariable(\"toolbox\"));\r",
+											"\r",
+											"try {\r",
+											"\r",
+											"    let userId = test.getEnvVar(\"USER_ID\")\r",
+											"\r",
+											"    let body =\r",
+											"    {\r",
+											"    \"title\": \"Segundo proj qualquer\",\r",
+											"    \"description\": \"Descrição legal\",\r",
+											"    \"tasks\": [{\r",
+											"        \"name\": \"Nome da tarefa\",\r",
+											"        \"assignedTo\": userId\r",
+											"        }]\r",
+											"    }\r",
+											"    test.setBody(body)\r",
+											"}\r",
+											"catch (e) {\r",
+											"    assert.failTest(e)\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"eval(postman.getGlobalVariable(\"toolbox\"));\r",
+											"assert.statusCode(200)\r",
+											"\r",
+											"try {\r",
+											"    test.setEnvVar('PROJECT_ID', JSON.parse(responseBody).project._id)\r",
+											"} catch (e) {\r",
+											"    assert.failTest(e)\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{LOGIN_TOKEN}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{{ENV_BODY}}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiUrl}}/projects",
+									"host": [
+										"{{apiUrl}}"
+									],
+									"path": [
+										"projects"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get created project",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"eval(postman.getGlobalVariable(\"toolbox\"));\r",
+											"assert.statusCode(200)\r",
+											"\r",
+											"try {\r",
+											"    let body = test.getBody()\r",
+											"\r",
+											"    assert.areEqual(\r",
+											"        \"The project title must be the same as the one used in the creation.\",\r",
+											"        JSON.parse(responseBody).object.projects[0][\"title\"].toLowerCase(),\r",
+											"        body.title.toLowerCase()\r",
+											"    )\r",
+											"\r",
+											"    assert.areEqual(\r",
+											"        \"The task name must be the same as the one used in the creation.\",\r",
+											"        JSON.parse(responseBody).object.projects.tasks[0][\"name\"].toLowerCase(),\r",
+											"        body.name.toLowerCase()\r",
+											"    )\r",
+											"\r",
+											"} catch (e) {\r",
+											"    assert.failTest(e)\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{LOGIN_TOKEN}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{apiUrl}}/projects/{{PROJECT_ID}}",
+									"host": [
+										"{{apiUrl}}"
+									],
+									"path": [
+										"projects",
+										"{{PROJECT_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a second project with two tasks",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"eval(postman.getGlobalVariable(\"toolbox\"));\r",
+											"\r",
+											"try {\r",
+											"\r",
+											"    let userId = test.getEnvVar(\"USER_ID\")\r",
+											"\r",
+											"    let body =\r",
+											"    {\r",
+											"    \"title\": \"Título qualquer\",\r",
+											"    \"description\": \"Descrição legal\",\r",
+											"    \"tasks\": [{\r",
+											"        \"name\": \"Tarefa 1\",\r",
+											"        \"assignedTo\": userId\r",
+											"        },\r",
+											"        {\r",
+											"        \"name\": \"Tarefa 2\",\r",
+											"        \"assignedTo\": userId\r",
+											"        }]\r",
+											"    }\r",
+											"    test.setBody(body)\r",
+											"}\r",
+											"catch (e) {\r",
+											"    assert.failTest(e)\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"eval(postman.getGlobalVariable(\"toolbox\"));\r",
+											"assert.statusCode(200)\r",
+											"\r",
+											"try {\r",
+											"    test.setEnvVar('SEC_PROJECT_ID', JSON.parse(responseBody).project._id)\r",
+											"} catch (e) {\r",
+											"    assert.failTest(e)\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{LOGIN_TOKEN}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{{ENV_BODY}}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiUrl}}/projects",
+									"host": [
+										"{{apiUrl}}"
+									],
+									"path": [
+										"projects"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit the second project",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"eval(postman.getGlobalVariable(\"toolbox\"));\r",
+											"\r",
+											"try {\r",
+											"\r",
+											"    let userId = test.getEnvVar(\"USER_ID\")\r",
+											"\r",
+											"    let body =\r",
+											"    {\r",
+											"    \"title\": \"Título editado\",\r",
+											"    \"description\": \"Descrição legal\",\r",
+											"    \"tasks\": [{\r",
+											"        \"name\": \"Nome editado\",\r",
+											"        \"assignedTo\": userId\r",
+											"        },\r",
+											"        {\r",
+											"        \"name\": \"Tarefa 2\",\r",
+											"        \"assignedTo\": userId\r",
+											"        }]\r",
+											"    }\r",
+											"    test.setBody(body)\r",
+											"}\r",
+											"catch (e) {\r",
+											"    assert.failTest(e)\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"eval(postman.getGlobalVariable(\"toolbox\"));\r",
+											"assert.statusCode(204)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{LOGIN_TOKEN}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{{ENV_BODY}}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiUrl}}/projects/{{SEC_PROJECT_ID}}",
+									"host": [
+										"{{apiUrl}}"
+									],
+									"path": [
+										"projects",
+										"{{SEC_PROJECT_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get the edited project",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"eval(postman.getGlobalVariable(\"toolbox\"));\r",
+											"assert.statusCode(200)\r",
+											"\r",
+											"try {\r",
+											"    let body = test.getBody()\r",
+											"\r",
+											"    assert.areEqual(\r",
+											"        \"The project title must be the same as the one used in the creation.\",\r",
+											"        JSON.parse(responseBody).object.projects[0][\"title\"].toLowerCase(),\r",
+											"        body.title.toLowerCase()\r",
+											"    )\r",
+											"\r",
+											"    assert.areEqual(\r",
+											"        \"The task name must be the same as the one used in the creation.\",\r",
+											"        JSON.parse(responseBody).object.projects.tasks[0][\"name\"].toLowerCase(),\r",
+											"        body.name.toLowerCase()\r",
+											"    )\r",
+											"\r",
+											"} catch (e) {\r",
+											"    assert.failTest(e)\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{LOGIN_TOKEN}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{apiUrl}}/projects/{{SEC_PROJECT_ID}}",
+									"host": [
+										"{{apiUrl}}"
+									],
+									"path": [
+										"projects",
+										"{{SEC_PROJECT_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List all created projects",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"eval(postman.getGlobalVariable(\"toolbox\"));\r",
+											"assert.statusCode(200)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{LOGIN_TOKEN}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{apiUrl}}/projects",
+									"host": [
+										"{{apiUrl}}"
+									],
+									"path": [
+										"projects"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}
