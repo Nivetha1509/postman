@@ -35,7 +35,7 @@ $ newman run examples/sample-collection.json
 In the case of this project, it is necessary to specify not only the collection, but also which environment and the globals file, which contains the libs of assertions and other functions used in the tests
 
 ```javascript
-newman run Challenge API Automation.postman_collection.json -e Estrategia_educacional.postman_environment.json -g globals.postman_globals.json -k
+newman run ChallengeAPIAutomation.postman_collection.json -e Estrategia_educacional.postman_environment.json -g globals.postman_globals.json -k
 ```
 * -k option disable SSL Certificate validations.
 * * * 
