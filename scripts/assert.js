@@ -8,12 +8,6 @@ var assert = (function () {
             });
         },
 
-        jsonSchema: function (schema) {
-            pm.test("Validate Json Schema", function () {
-                pm.response.to.have.jsonSchema(schema);
-            })
-        },
-
         areEqual: function (assertiveName, expectedValue, foundValue) {
             pm.test(assertiveName, function () {
                 pm.expect(foundValue).to.eql(expectedValue);
@@ -22,22 +16,6 @@ var assert = (function () {
 
         failTest: function (exception) {
             pm.test("Test Fail: ", function () { throw new Error(exception.message) });
-        },
-
-        existInSubset: function (assertiveName, expectedValue, foundValue) {
-            pm.test(assertiveName, function () {
-                pm.expect(_.filter(expectedValue, foundValue)).to.not.be.empty
-            })
-        },
-
-        isArray: function (assertiveName, expectedValue) {
-            pm.test(assertiveName, () =>
-                pm.expect(expectedValue).to.be.an('array').but.not.an('object'))
-        },
-
-        isObject: function (assertiveName, expectedValue) {
-            pm.test(assertiveName, () =>
-                pm.expect(expectedValue).to.be.an('object').but.not.an('array'))
         },
 
         exists: function (assertiveName, object, field) {
