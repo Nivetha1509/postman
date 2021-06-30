@@ -25,7 +25,7 @@ $ npm install -g newman
 ```
 This installs Newman globally on your system allowing you to run it from anywhere. If you want to install it locally, Just remove the `-g` flag.
 
-### Using Newman
+### Using Newman CLI
 The `newman run` command allows you to specify a collection to be run. You can easily export your Postman
 Collection as a json file from the Postman App and run it using Newman.
 
@@ -34,8 +34,8 @@ $ newman run examples/sample-collection.json
 ```
 In the case of this project, it is necessary to specify not only the collection, but also which environment and the globals file, which contains the libs of assertions and other functions used in the tests
 
-```javascript
-newman run ChallengeAPIAutomation.postman_collection.json -e Estrategia_educacional.postman_environment.json -g globals.postman_globals.json -k
+```console
+$ newman run ChallengeAPIAutomation.postman_collection.json -e Estrategia_educacional.postman_environment.json -g globals.postman_globals.json -k
 ```
 * -k option disable SSL Certificate validations.
 * * * 
