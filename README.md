@@ -1,8 +1,8 @@
 # Test framework for APIs using Postman and automation with Newman
 This is a simple example of framework that helps you create tests for APIs. Tests are created in Postman and exported to run on any continuous integration server through Newman. The libs used in these tests are created in javascript.
 
-Note 1: the API which these tests are based on can be found in this [GitHub](https://github.com/estrategiahq/desafio-qa-engineer) repository.
-Note 2: this API is currently not functional. This project is just to demonstrate how tests are structured and executed.
+- Note 1: the API which these tests are based on can be found in this [GitHub](https://github.com/estrategiahq/desafio-qa-engineer) repository.
+- Note 2: this API is currently not functional. This project is just to demonstrate how tests are structured and executed.
 
 ## So where to start?
 
