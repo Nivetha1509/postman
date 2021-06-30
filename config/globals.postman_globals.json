@@ -1,0 +1,29 @@
+{
+	"id": "146e52f0-fd32-4814-8e58-8a3c0f4d5eb7",
+	"values": [
+		{
+			"key": "utils",
+			"value": "var utils = (function () {\n    var _ = require('lodash');\n\n    return {\n        getRandomString: function (length) {\n            var result = '';\n            var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ';\n            var charactersLength = characters.length;\n            for (var i = 0; i < length; i++) {\n                result += characters.charAt(Math.floor(Math.random() * charactersLength));\n            }\n            console.log(result);\n            return result;\n        },\n\n        getCpf: function () {\n            const rnd = (n) => Math.round(Math.random() * n);\n            const mod = (base, div) => Math.round(base - Math.floor(base / div) * div)\n            const n = Array(9).fill('').map(() => rnd(9));\n        \n            let d1 = n.reduce((total, number, index) => (total + (number * (10 - index))), 0)\n            d1 = 11 - mod(d1, 11);\n            if (d1 >= 10) d1 = 0;\n        \n            let d2 = (d1 * 2) + n.reduce((total, number, index) => (total + (number * (11 - index))), 0)\n            d2 = 11 - mod(d2, 11);\n            if (d2 >= 10) d2 = 0;\n        \n            return formatCPF(`${n.join('')}${d1}-${d2}`)\n        }\n    }\n\n    function formatCPF(cpf) {\n        cpf = cpf.replace(/[^\\d]/g, \"\");\n        return cpf.replace(/(\\d{3})(\\d{3})(\\d{3})(\\d{2})/, \"$1.$2.$3-$4\");\n    }\n})();\n\n",
+			"enabled": true
+		},
+		{
+			"key": "test",
+			"value": "var test = (function () {\n    var _ = require('lodash');\n\n    return {\n        setBody: function (body) {\n            postman.setEnvironmentVariable(\"ENV_BODY\",JSON.stringify(body))\n        },\n\n        getBody: function () {\n            return JSON.parse(postman.getEnvironmentVariable(\"ENV_BODY\"))\n        },\n\n        clearBody: function () {\n            pm.environment.unset(\"ENV_BODY\")\n        },\n\n        parseVariableToJson: function (envVariableName) {\n            return JSON.parse(postman.getEnvironmentVariable(envVariableName));\n        },\n\n        setEnvVar: function(key, value){\n            postman.setEnvironmentVariable(key, value)\n        },\n\n        getEnvVar: function(key){\n            return postman.getEnvironmentVariable(key)\n        }\n    }\n})();\n",
+			"enabled": true
+		},
+		{
+			"key": "asserts",
+			"value": "var assert = (function () {\n    var _ = require('lodash');\n\n    return {\n        statusCode: function (expectedCode) {\n            pm.test(\"Status code is expectedCode\", function () {\n                pm.response.to.have.status(expectedCode);\n            });\n        },\n\n        jsonSchema: function (schema) {\n            pm.test(\"Validate Json Schema\", function () {\n                pm.response.to.have.jsonSchema(schema);\n            })\n        },\n\n        areEqual: function (assertiveName, expectedValue, foundValue) {\n            pm.test(assertiveName, function () {\n                pm.expect(foundValue).to.eql(expectedValue);\n            })\n        },\n\n        failTest: function (exception) {\n            pm.test(\"Test Fail: \", function () { throw new Error(exception.message) });\n        },\n\n        existInSubset: function (assertiveName, expectedValue, foundValue) {\n            pm.test(assertiveName, function () {\n                pm.expect(_.filter(expectedValue, foundValue)).to.not.be.empty\n            })\n        },\n\n        isArray: function (assertiveName, expectedValue) {\n            pm.test(assertiveName, () =>\n                pm.expect(expectedValue).to.be.an('array').but.not.an('object'))\n        },\n\n        isObject: function (assertiveName, expectedValue) {\n            pm.test(assertiveName, () =>\n                pm.expect(expectedValue).to.be.an('object').but.not.an('array'))\n        },\n\n        exists: function (assertiveName, object, field) {\n            pm.test(assertiveName, function () {\n                pm.expect(object).to.have.property(field);\n            });\n        }\n    }\n})();\n\n",
+			"enabled": true
+		},
+		{
+			"key": "toolbox",
+			"value": "eval(postman.getGlobalVariable(\"test\"))\neval(postman.getGlobalVariable(\"assert\"))\neval(postman.getGlobalVariable(\"utils\"))",
+			"enabled": true
+		}
+	],
+	"name": "My Workspace Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2021-06-30T02:12:29.626Z",
+	"_postman_exported_using": "Postman/8.7.0"
+}
