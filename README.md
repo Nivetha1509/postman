@@ -3,6 +3,7 @@ This is a simple example of framework that helps you create tests for APIs. Test
 
 - Note 1: the API which these tests are based on can be found in this [GitHub](https://github.com/estrategiahq/desafio-qa-engineer) repository.
 - Note 2: this API is currently not functional. This project is just to demonstrate how tests are structured and executed.
+- Note 3: I recommend using postman only for small projects. I had serious performance issues for maintenance and creation of new tests when I reached a total of five thousand requests.
 
 ## So where to start?
 
@@ -32,7 +33,7 @@ Collection as a json file from the Postman App and run it using Newman.
 ```console
 $ newman run examples/sample-collection.json
 ```
-In the case of this project, it is necessary to specify not only the collection, but also which environment and the globals file, which contains the libs of assertions and other functions used in the tests
+In the case of this project, it is necessary to specify not only the collection, but also which environment and the globals file, which contains the libs of assertions and other functions used in the tests.
 
 ```console
 $ newman run ChallengeAPIAutomation.postman_collection.json -e Estrategia_educacional.postman_environment.json -g globals.postman_globals.json -k
